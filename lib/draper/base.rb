@@ -39,7 +39,7 @@ module Draper
     # But they don't have to match in name, so a `EmployeeDecorator`
     # class could call `decorates :person` to wrap instances of `Person`
     #
-    # This is primarilly set so the `.find` method knows which class 
+    # This is primarilly set so the `.find` method knows which class
     # to query.
     #
     # @param [Symbol] class_name snakecase name of the decorated class, like `:product`
@@ -94,7 +94,7 @@ module Draper
     # Access the helpers proxy to call built-in and user-defined
     # Rails helpers. Aliased to `.h` for convinience.
     #
-    # @return [Object] proxy   
+    # @return [Object] proxy
     def helpers
       @helpers ||= ApplicationController::all_helpers
     end
@@ -110,12 +110,12 @@ module Draper
       self.send(:include, Draper::LazyHelpers)
     end
 
-    # Use primarily by `form_for`, this returns an instance of 
-    # `ActiveModel::Name` set to the wrapped model's class name
+    # Use primarily by `form_for`, this returns an instance of
+    # `ActiveSupport::ModelName` set to the wrapped model's class name
     #
-    # @return [ActiveModel::Name] model_name   
+    # @return [ActiveSupport::ModelName] model_name
     def self.model_name
-      ActiveModel::Name.new(model_class)
+      ActiveSupport::ModelName.new(model_class.name)
     end
 
     # Fetch the original wrapped model.

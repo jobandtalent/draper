@@ -14,7 +14,7 @@ describe Draper::Base do
 
   context(".model_name") do
     it "should return an ActiveModel::Name instance" do
-      Draper::Base.model_name.should be_instance_of(ActiveModel::Name)
+      Draper::Base.model_name.should be_instance_of(ActiveSupport::ModelName)
     end
   end
 
@@ -22,7 +22,7 @@ describe Draper::Base do
     it "sets the model class for the decorator" do
       ProductDecorator.new(source).model_class.should == Product
     end
-    
+
     it "should handle plural-like words properly'" do
       class Business; end
       expect do
